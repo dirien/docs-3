@@ -83,7 +83,7 @@ To delete:
   inletsctl delete --provider digitalocean --id "248562460"
 ```
 
-You can also specify more than one domain and upstream for the same tunnel, so you could expose OpenFaaS and Prometheus separately for instance.
+You can also specify more than one domain and upstream for the same tunnel, so you could expose OpenFaaS and Grafana separately for instance.
 
 Update the `inletsctl create` command with multiple domains such as: `--letsencrypt-domain openfaas.example.com --letsencrypt-domain grafana.example.com`
 
@@ -118,14 +118,14 @@ inlets PRO (0.7.0) exit-server summary:
   Auth-token: dZTkeCNYgrTPvFGLifyVYW6mlP78ny3jhyKM1apDL5XjmHMLYY6MsX8S2aUoj8uI
 ```
 
-Now run the command given to you, changing the `--upstream` URL to match a local URL such as `http://127.0.0.1:3000`
+Now run the command given to you, changing the `--upstream` URL to match a local URL such as `http://localhost:3000`
 
 ```bash
 # Obtain a license at https://inlets.dev
 export LICENSE="$HOME/.inlets/license"
 
 # Give a single value or comma-separated
-export PORTS="8000"
+export PORTS="3000"
 
 # Where to route traffic from the inlets server
 export UPSTREAM="localhost"
@@ -139,7 +139,7 @@ inlets-pro client --url "wss://188.166.168.90:8123/connect" \
 
 You can then access your local website via the Internet and the exit-server's IP at:
 
-http://165.232.108.137
+http://188.166.168.90
 
 When you're done, you can delete the host using its ID or IP address:
 
@@ -273,6 +273,7 @@ aws iam create-policy --policy-name inlets-automation --policy-document file://p
 
 
 * Create an IAM user
+
 ```sh 
 aws iam create-user --user-name inlets-automation
 ```
@@ -299,7 +300,7 @@ echo $ACCESS_KEY_JSON | jq -r .AccessKey.AccessKeyId > access-key.txt
 echo $ACCESS_KEY_JSON | jq -r .AccessKey.SecretAccessKey > secret-key.txt
 ```
 
-Create an exit-server:
+* Create an exit-server:
 
 ```bash
 inletsctl create \
@@ -309,7 +310,7 @@ inletsctl create \
   --secret-key-file ./secret-key.txt
 ```
 
-Delete an exit-server:
+* Delete an exit-server:
 
 ```bash
 export IP=""
@@ -320,6 +321,119 @@ inletsctl create \
   --access-token-file ./access-key.txt \
   --secret-key-file ./secret-key.txt \
   --ip $IP
+```
+
+#### Example usage with AWS EC2 Temporary Credentials
+
+To use the instructions below you must have the AWS CLI configured with sufficient permissions to 
+create users and roles. 
+
+The following instructions use `get-session-token` to illustrate the concept.  However, it is expected that real world usage would more likely make use of `assume-role` to obtain temporary credentials.
+
+* Create a AWS IAM Policy with the following:
+
+Create a file named `policy.json` with the following content
+
+```json 
+{
+    "Version": "2012-10-17",
+    "Statement": [  
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:DescribeInstances",
+                "ec2:DescribeImages",
+                "ec2:TerminateInstances",
+                "ec2:CreateSecurityGroup",
+                "ec2:CreateTags",
+                "ec2:DeleteSecurityGroup",
+                "ec2:RunInstances",
+                "ec2:DescribeInstanceStatus"
+            ],
+            "Resource": ["*"]
+        }
+    ]
+}
+```
+
+* Create the policy in AWS 
+
+```sh 
+aws iam create-policy --policy-name inlets-automation --policy-document file://policy.json
+```
+
+
+* Create an IAM user
+
+```sh 
+aws iam create-user --user-name inlets-automation
+```
+
+* Add the Policy to the IAM user
+
+We need to use the policy arn generated above, it should have been printed to the console on success. It also follows the format below.
+
+```sh 
+export AWS_ACCOUNT_NUMBER="Your AWS Account Number"
+aws iam attach-user-policy --user-name inlets-automation --policy-arn arn:aws:iam::${AWS_ACCOUNT_NUMBER}:policy/inlets-automation
+```
+
+* Generate an access key for your IAM User 
+
+The below commands will create a set of credentials and save them into files for use later on.
+
+> we are using [jq](https://stedolan.github.io/jq/) here. It can be installed using the link provided.
+> Alternatively you can print ACCESS_KEY_JSON and create the files manually.
+
+```sh 
+ACCESS_KEY_JSON=$(aws iam create-access-key --user-name inlets-automation)
+export AWS_ACCESS_KEY_ID=$(echo $ACCESS_KEY_JSON | jq -r .AccessKey.AccessKeyId)
+export AWS_SECRET_ACCESS_KEY=$(echo $ACCESS_KEY_JSON | jq -r .AccessKey.SecretAccessKey)
+```
+
+* Check that calls are now being executed by the `inlets-automation` IAM User.
+
+```sh
+aws sts get-caller-identity
+```
+
+* Ask STS for some temporary credentials
+
+```sh
+TEMP_CREDS=$(aws sts get-session-token)
+```
+ 
+* Break out the required elements
+
+```sh
+echo $TEMP_CREDS | jq -r .Credentials.AccessKeyId > access-key.txt    
+echo $TEMP_CREDS | jq -r .Credentials.SecretAccessKey > secret-key.txt
+echo $TEMP_CREDS | jq -r .Credentials.SessionToken > session-token.txt
+```
+
+* Create an exit-server using temporary credentials:
+
+```bash
+inletsctl create \
+  --provider ec2 \
+  --region eu-west-1 \
+  --access-token-file ./access-key.txt \
+  --secret-key-file ./secret-key.txt \
+  --session-token-file ./session-token.txt
+```
+
+* Delete an exit-server using temporary credentials:
+
+```bash
+export INSTANCEID=""
+
+inletsctl delete \
+  --provider ec2 \
+  --id $INSTANCEID
+  --access-token-file ./access-key.txt \
+  --secret-key-file ./secret-key.txt \
+  --session-token-file ./session-token.txt
 ```
 
 ### Example usage with Google Compute Engine
