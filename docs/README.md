@@ -6,7 +6,7 @@ VPNs traditionally require up-front configuration like subnet assignment and por
 
 You can run inlets as a stand-alone binary, in Docker, integrated into [Kubernetes](https://kubernetes.io) for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/), or with cloud APIs. All services can be kept private in the target network, or exposed publicly.
 
-> [inlets PRO](https://inlets.dev/) is both available for MacOS, Linux (including ARM), Windows, FreeBSD, and as Docker containers. inlets OSS is available for hobbyists only in source only with no support guarantee or warranty.
+> [inlets PRO](https://inlets.dev/) is both available for MacOS, Linux (including ARM), Windows, FreeBSD, and as Docker containers.
 
 ## Use-cases
 
@@ -98,6 +98,7 @@ We created a page to help you get started once you have your free trial license:
 ### inlets PRO with Kubernetes
 
 * [Case-study: Reliable local port-forwarding from Kubernetes](https://inlets.dev/blog/2021/04/13/local-port-forwarding-kubernetes.html)
+* [Fixing Ingress for short-lived local Kubernetes clusters](https://inlets.dev/blog/2021/07/08/short-lived-clusters.html)
 * [Quick-start: Expose Your IngressController and get TLS from LetsEncrypt and cert-manager](/get-started/quickstart-ingresscontroller-cert-manager?id=expose-your-ingresscontroller-and-get-tls-from-letsencrypt)
 * [Expose your local OpenFaaS functions to the Internet](https://inlets.dev/blog/2020/10/15/openfaas-public-endpoints.html)
 * [Get kubectl access to your private cluster from anywhere](https://blog.alexellis.io/get-private-kubectl-access-anywhere/)
@@ -110,24 +111,16 @@ We created a page to help you get started once you have your free trial license:
 * [Save Money by Connecting Your Local Database to the Public Cloud by Burton Rheutan](https://medium.com/@burtonr/local-database-for-the-cloud-with-inlets-pro-ac0488cc54e0)
 * [Exploring NAT Traversal and Tunnels with Inlets and Inlets Pro by Alistair Hey](https://blog.heyal.co.uk/inlets-pro/)
 
-### inlets OSS examples
-* [Advanced Cloud Patterns with inlets and inlets-cloud](https://inlets.dev/blog/2020/10/08/advanced-cloud-patterns.html)
+### Managed inlets with inlets cloud
+* [Advanced Cloud Patterns & inlets-cloud](https://inlets.dev/blog/2020/10/08/advanced-cloud-patterns.html)
+* [How we scaled inlets to thousands of tunnels with Kubernetes](https://inlets.dev/blog/2021/03/15/scaling-inlets.html)
+* [Learn how to manage apps across private Kubernetes clusters](https://inlets.dev/blog/2021/06/02/argocd-private-clusters.html)
 
 ## Pricing
 
-### inlets PRO
+You can buy an inlets PRO license for personal or commercial use [on Gumroad](https://inlets.dev/pricing).
 
-Buy an inlets PRO license for personal or commercial use:
-
-* [inlets PRO pricing](https://inlets.dev/pricing)
-
-### inlets OSS
-
-Perhaps the open source version of inlets is for you, feel free to reach out to us at [contact@openfaas.com](mailto:contact@openfaas.com) for a quote on commercial support, training, and custom solutions for any of the inlets projects.
-
-Do you need to connect many clients to your inlets servers? Ask us about inlets-cloud, which can support thousands of tunnels and clients using inlets OSS or inlets PRO. inlets-cloud has its own REST API, metrics, authorization and CLI and is ideal for companies.
-
-Alternatively, if you're a home user or a small company using inlets OSS, then you can support the project [via GitHub Sponsors](https://github.com/sponsors/inlets).
+> Note: inlets OSS is discontinued and has been replaced by inlets PRO which provides an easy upgrade path. Feel free to reach out to the team at [contact@openfaas.com](contact@openfaas.com).
 
 ## Connect with the community
 
