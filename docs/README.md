@@ -6,7 +6,7 @@ VPNs traditionally require up-front configuration like subnet assignment and por
 
 You can run inlets as a stand-alone binary, in Docker, integrated into [Kubernetes](https://kubernetes.io) for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/), or with cloud APIs. All services can be kept private in the target network, or exposed publicly.
 
-> [inlets PRO](https://inlets.dev/) is both available for MacOS, Linux (including ARM), Windows, FreeBSD, and as Docker containers.
+> [inlets PRO](https://inlets.dev/) is available for MacOS, Linux (including ARM), Windows, FreeBSD, and as Docker containers.
 
 ## Use-cases
 
@@ -15,12 +15,13 @@ You can use inlets as a stand-alone networking tool, or integrate it into a plat
 ### For companies - hybrid cloud, multi-cluster and partner access
 
 * Low-maintenance, secure, and quick alternative to a VPN
+* To connect hundreds or thousands of clients without making them part of your corporate network 
 * To build a hybrid cloud between existing servers and public cloud for: CI, e2e testing, or for accessing legacy databases and IT systems
 * To migrate on-premises databases and APIs to public cloud
 * To connect to the private environments of your customers in a SaaS product
 * For command and control of: services within private VPCs, IoT devices, and Point of Sale (PoS)
 * Exposing private API endpoints to third-parties and partners
-* As a cheaper, easier alternative to a data-center uplink or managed product like [AWS Direct Connect](https://aws.amazon.com/directconnect/) or [Azure Express Route](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-introduction)
+* As a cheaper, easier alternative to a data-center uplink or managed product like AWS Direct Connect or Azure Express Route
 
 ### For teams and individuals - for public tunnels and Kubernetes connectivity
 
@@ -29,7 +30,7 @@ You can use inlets as a stand-alone networking tool, or integrate it into a plat
 * To get a public IP address for your IngressController or services on a Kubernetes cluster
 * To access your homelab, Owncloud instance, FreeNAS, or Raspberry Pi cluster using SSH and HTTPS
 * As a freelancer, you can share a blog or website with a client or with your team
-* As an alternative to SaaS and or proprietary offerings such as [Ngrok](https://ngrok.io) and [Argo Tunnel](https://www.cloudflare.com/en-gb/products/argo-tunnel/) where you can use your own DNS, and decide your own rate-limits
+* As an alternative to SaaS tunnels which enforce certain rate-limits, random ports or prevent custom DNS
 
 ## Concept
 
@@ -82,7 +83,7 @@ Exit servers can be set up manually, or you can use tooling like [Terraform](htt
 
 We created a page to help you get started once you have your free trial license:
 
-* [Get started with your free trial](/get-started/free-trial)
+* [Get started with your free trial](/get-started/free-trial?id=get-started-with-your-free-trial)
 
 ### inlets PRO
 
@@ -120,7 +121,7 @@ We created a page to help you get started once you have your free trial license:
 
 You can buy an inlets PRO license for personal or commercial use [on Gumroad](https://inlets.dev/pricing).
 
-> Note: inlets OSS is discontinued and has been replaced by inlets PRO which provides an easy upgrade path. Feel free to reach out to the team at [contact@openfaas.com](contact@openfaas.com).
+> Note: inlets OSS has been discontinued and was replaced by inlets PRO. inlets PRO is a drop-in replacement. Feel free to reach out to the team at [contact@openfaas.com](contact@openfaas.com).
 
 ## Connect with the community
 
