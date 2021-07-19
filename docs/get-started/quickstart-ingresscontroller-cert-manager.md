@@ -77,7 +77,7 @@ The above shows one node Ready, so we are ready to move on.
 
 Save an access token for your cloud provider as `$HOME/access-token`, in this example we're using DigitalOcean.
 
-Make sure you set `LICENSE` with the value of your license.
+Make sure you set `LICENSE_FILE` with the path to your license file, normally saved at: `$HOME/.inlets/LICENSE`.
 
 ```bash
 export ACCESS_TOKEN=$HOME/access-token

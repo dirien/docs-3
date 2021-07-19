@@ -95,22 +95,22 @@ If you have more than one website, you can add them to the Caddyfile on new line
 Downloads the inlets PRO client:
 
 ```sh
-sudo inletsctl download --pro
+sudo inletsctl download
 ```
 
 Run the inlets-pro client, using the TOKEN and IP given to you from the previous step.
 
+The client will look for your license in `$HOME/.inlets/LICENSE`, but you can also use the `--license/--license-file` flag if you wish.
+
 ```sh
 export IP=""        # take this from the exit-server
 export TOKEN=""     # take this from the exit-server
-export LICENSE_FILE="$HOME/LICENSE.txt"
 
 inlets-pro client \
   --url wss://$IP:8123/connect \
   --ports 80,443 \
   --token $TOKEN \
-  --upstream localhost \
-  --license-file $LICENSE_FILE
+  --upstream localhost
 ```
 
 Note that `--upstream localhost` will connect to Caddy running on your computer, if you are running Caddy on another machine, use its IP address here.

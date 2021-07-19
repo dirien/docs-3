@@ -8,7 +8,7 @@ The easiest way to get started is with `inletsctl` which will create a public ho
 # Remove `sudo to install to the local folder
 curl -sLSf https://raw.githubusercontent.com/inlets/inletsctl/master/get.sh | sudo sh
 
-sudo inletsctl download --pro
+sudo inletsctl download
 ```
 
 ## Start a Python HTTP fileserver

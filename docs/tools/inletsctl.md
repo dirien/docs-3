@@ -31,10 +31,10 @@ Example usage:
 
 ```sh
 # Download the latest inlets-pro binary
-inletsctl download --pro
+inletsctl download
 
 # Download a specific version of inlets-pro
-inletsctl download --pro --version 0.8.5
+inletsctl download --version 0.8.5
 ```
 
 ## The `create` command
@@ -132,10 +132,11 @@ export UPSTREAM="localhost"
 
 inlets-pro client --url "wss://188.166.168.90:8123/connect" \
   --token "dZTkeCNYgrTPvFGLifyVYW6mlP78ny3jhyKM1apDL5XjmHMLYY6MsX8S2aUoj8uI" \
-  --license-file "$LICENSE" \
   --upstream $UPSTREAM \
   --ports $PORTS
 ```
+
+> The client will look for your license in `$HOME/.inlets/LICENSE`, but you can also use the `--license/--license-file` flag if you wish.
 
 You can then access your local website via the Internet and the exit-server's IP at:
 

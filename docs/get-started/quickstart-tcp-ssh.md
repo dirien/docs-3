@@ -21,7 +21,7 @@ You can use the `inletsctl` utility to provision exit-servers with inlets PRO pr
 ```bash
 curl -sLSf https://inletsctl.inlets.dev | sh
 sudo mv inletsctl /usr/local/bin/
-sudo inletsctl download --pro
+sudo inletsctl download
 ```
 
 # Create an exit node
@@ -55,7 +55,7 @@ Log in to your remote exit node with `ssh` and obtain the binary using `inletsct
 ```bash
 curl -sLSf https://inletsctl.inlets.dev | sh
 sudo mv inletsctl /usr/local/bin/
-sudo inletsctl download --pro
+sudo inletsctl download
 ```
 
 Find your public IP:
@@ -129,7 +129,7 @@ ssh -p 2222 $IP "uptime"
 First download the inlets-pro client onto the machine running ssh:
 
 ```bash
-sudo inletsctl download --pro
+sudo inletsctl download
 ```
 
 Use the command from earlier to start the client on the server:

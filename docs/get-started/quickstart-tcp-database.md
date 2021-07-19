@@ -36,6 +36,8 @@ Fill in the below with the outputs you received from `inletsctl create`.
 
 Note that `UPSTREAM="localhost"` can be changed to point at a host or IP address accessible from your client. The choice of `localhost` is suitable when you are running Postgresql in Docker on the same computer as the inlets PRO client.
 
+The client will look for your license in `$HOME/.inlets/LICENSE`, but you can also use the `--license/--license-file` flag if you wish.
+
 ```bash
 export EXIT_IP="134.209.21.155"
 export TCP_PORTS="5432"
@@ -45,7 +47,6 @@ export UPSTREAM="localhost"
 
 inlets-pro client --connect "wss://$EXIT_IP:8123/connect" \
   --token "$TOKEN" \
-  --license-file "$LICENSE_FILE" \
   --upstream $UPSTREAM \
   --ports $TCP_PORTS
 ```
