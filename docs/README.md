@@ -38,8 +38,8 @@ You can use inlets as a stand-alone networking tool, or integrate it into a plat
 
 You can start a HTTPS or TCP tunnel:
 
-* TCP (L4) tunnels can be used to connect TCP services such as a database, a reverse proxy, RDP, Kubernetes or SSH to the Internet. A single tunnel can expose multiple ports on an exit-server
 * HTTPS (L7) tunnels can be used to connect one or more HTTP endpoints from one network to another. A single tunnel can expose multiple websites or hosts, including LoadBalancing and multiple clients to one server.
+* TCP (L4) tunnels can be used to connect TCP services such as a database, a reverse proxy, RDP, Kubernetes or SSH to the Internet. A single tunnel can expose multiple ports on an exit-server
 
 inlets PRO has secure defaults and includes additional documentation, examples, and integrations to make it easier to use. It also has a commercial license and support available.
 
@@ -61,7 +61,7 @@ Exit servers can be set up manually, or you can use tooling like [Terraform](htt
 * [inlets-operator](https://github.com/inlets/inlets-operator) - get an exit-server for each LoadBalancer service in your Kubernetes cluster
 * [inlets PRO helm charts](https://github.com/inlets/inlets-pro/tree/master/chart) - deploy one or more inlets PRO clients or servers via helm
 
-> These share the same provisioning code and create exit-servers on a range of cloud platforms like: DigitalOcean, Packet, Scaleway, Hetzner, AWS EC2, Azure, and GCP.
+> These share the same provisioning code and create exit-servers on a range of cloud platforms like: DigitalOcean, Equinix Metal, AWS EC2, Azure, GCP, Vultr, Scaleway, Hetzner and Linode.
 
 ## Reference documentation
 
