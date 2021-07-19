@@ -45,7 +45,7 @@ inlets PRO has secure defaults and includes additional documentation, examples, 
 
 In the diagram we can see a developer has exposed a Node.js website on his or her laptop through the use of inlets and a server that has a public IPv4 address.
 
-![Conceptual diagram for inlets](images/conceptual.png)
+![Conceptual diagram for inlets](images/inlets-conceptual.png)
 
 The remote server is called an "exit-node" or "exit-server" because that is where traffic from the private network appears. The user's laptop has gained a "VirtualIP" and users on the Internet can now connect to it using that IP.
 
