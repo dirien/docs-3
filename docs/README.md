@@ -45,9 +45,15 @@ inlets PRO has secure defaults and includes additional documentation, examples, 
 
 In the diagram we can see a developer has exposed a Node.js website on his or her laptop through the use of inlets and a server that has a public IPv4 address.
 
-![Conceptual diagram for inlets](images/inlets-conceptual.png)
+![Conceptual diagram for inlets](images/conceptual.png)
 
 The remote server is called an "exit-node" or "exit-server" because that is where traffic from the private network appears. The user's laptop has gained a "VirtualIP" and users on the Internet can now connect to it using that IP.
+
+TCP tunnels are also supported, which encrypt and forward a number of TCP ports to an upstream within your private network.
+
+![inlets PRO conceptual](https://raw.githubusercontent.com/inlets/inlets-pro/master/docs/images/inlets-pro-split-plane.png)
+
+> A split data and control-plane mean that tunnels do not need to be exposed on the Internet and can replace a VPN or a bespoke solution with SSH tunnels 
 
 ## Exit-servers
 
