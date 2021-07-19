@@ -65,23 +65,9 @@ Exit servers can be set up manually, or you can use tooling like [Terraform](htt
 
 * [inletsctl](https://github.com/inlets/inletsctl)  - create individual exit-servers
 * [inlets-operator](https://github.com/inlets/inlets-operator) - get an exit-server for each LoadBalancer service in your Kubernetes cluster
-* [inlets PRO helm charts](https://github.com/inlets/inlets-pro/tree/master/chart) - deploy one or more inlets PRO clients or servers via helm
+* [inlets PRO helm charts](https://github.com/inlets/inlets-pro/tree/master/chart) - deploy one or more inlets PRO clients or servers to your Kubernetes cluster via helm
 
 > These share the same provisioning code and create exit-servers on a range of cloud platforms like: DigitalOcean, Equinix Metal, AWS EC2, Azure, GCP, Vultr, Scaleway, Hetzner and Linode.
-
-## Reference documentation
-
-### inletsctl reference documentation
-
-* [inletsctl documentation](/tools/inletsctl?id=inletsctl-reference-documentation)
-
-### inlets-operator reference documentation
-
-* [inlets-operator documentation](/tools/inlets-operator?id=inlets-operator-reference-documentation)
-
-### inlets PRO reference documentation
-
-* [inlets PRO CLI reference guide](https://github.com/inlets/inlets-pro/blob/master/docs/cli-reference.md)
 
 ## Tutorials
 
@@ -101,6 +87,8 @@ We created a page to help you get started once you have your free trial license:
 * [Expose Apache Cassandra running on your local machine, out to another network with TLS encryption](https://github.com/inlets/inlets-pro/blob/master/docs/cassandra-tutorial.md)
 * [Expose your private Grafana devops dashboards with Caddy and TLS](https://blog.alexellis.io/expose-grafana-dashboards/)
 * [Case-study: The Simple Way To Connect Existing Apps to Public Cloud](https://inlets.dev/blog/2021/04/07/simple-hybrid-cloud.html)
+
+* [Host an inlets PRO tunnel for free on fly.io](https://inlets.dev/blog/2021/07/07/inlets-fly-tutorial.html)
 
 ### inlets PRO with Kubernetes
 
@@ -122,6 +110,20 @@ We created a page to help you get started once you have your free trial license:
 * [Advanced Cloud Patterns & inlets-cloud](https://inlets.dev/blog/2020/10/08/advanced-cloud-patterns.html)
 * [How we scaled inlets to thousands of tunnels with Kubernetes](https://inlets.dev/blog/2021/03/15/scaling-inlets.html)
 * [Learn how to manage apps across private Kubernetes clusters](https://inlets.dev/blog/2021/06/02/argocd-private-clusters.html)
+
+## Reference documentation
+
+### inletsctl reference documentation
+
+* [inletsctl documentation](/tools/inletsctl?id=inletsctl-reference-documentation)
+
+### inlets-operator reference documentation
+
+* [inlets-operator documentation](/tools/inlets-operator?id=inlets-operator-reference-documentation)
+
+### inlets PRO reference documentation
+
+* [inlets PRO CLI reference guide](https://github.com/inlets/inlets-pro/blob/master/docs/cli-reference.md)
 
 ## Pricing
 
