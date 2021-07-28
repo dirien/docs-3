@@ -1,12 +1,12 @@
- # Quick-start: Tunnel a private SSH server over inlets PRO
+# Quick-start: Expose a private SSH endpoint using a TCP tunnel
 
 In this tutorial we will use inlets-pro to access your computer behind NAT or a firewall. We'll do this by tunnelling SSH over inlets-pro, and clients will connect to your exit-server.
 
 Scenario: You want to allow SSH access to a computer that doesn't have a public IP, is inside a private network or behind a firewall. A common scenario is connecting to a Raspberry Pi on a home network or a home-lab.
 
-> You will need an inlets PRO license, [start a 14-day free trial](https://inlets.dev/).
+> You will need an inlets PRO license - [start a 14-day free trial](https://inlets.dev/pricing) or sign-up [for monthly/annual billing](https://inlets.dev/pricing).
 
-## Setup your exit node with `inletsctl`
+## Setup your tunnel server with `inletsctl`
 
 For this tutorial you will need to have an account and API key with one of the [supported providers](https://github.com/inlets/inletsctl#featuresbacklog), or you can create an exit-server manually and install inlets PRO there yourself.
 
@@ -24,33 +24,38 @@ sudo mv inletsctl /usr/local/bin/
 sudo inletsctl download
 ```
 
-# Create an exit node
+If you already have `inletsctl` installed, then make sure you update it with `inletsctl update`.
 
-## A) Automate your exit node
+## Create an tunnel server
+
+### A) Automate your tunnel server
+
+The inletsctl tool can create a tunnel server for you in the region and cloud of your choice.
+
 
 ```bash
 inletsctl create \
+  --provider digitalocean \
   --access-token-file ~/do-access-token \
-  --region lon1 \
-  --pro
+  --region lon1
 ```
 
-> Pick a region close to your network, you can see other options with `--help`
+Run `inletsctl create --help` to see all the options.
 
 After the machine has been created, `inletsctl` will output a sample command for the `inlets-pro client` command:
 
 ```bash 
 inlets-pro client --url "wss://206.189.114.179:8123/connect" \
-    --token "4NXIRZeqsiYdbZPuFeVYLLlYTpzY7ilqSdqhA0HjDld1QjG8wgfKk04JwX4i6c6F" \
+    --token "4NXIRZeqsiYdbZPuFeVYLLlYTpzY7ilqSdqhA0HjDld1QjG8wgfKk04JwX4i6c6F"
 ```
 
 Don't run this command, but note down the `--url` and `--token` parameters for later
 
-## B) Manual setup of your exit node
+### B) Manual setup of your tunnel server
 
 Use B) if you want to provision your virtual machine manually, or if you already have a host from another provider.
 
-Log in to your remote exit node with `ssh` and obtain the binary using `inletsctl`:
+Log in to your remote tunnel server with `ssh` and obtain the binary using `inletsctl`:
 
 ```bash
 curl -sLSf https://inletsctl.inlets.dev | sh
@@ -77,9 +82,9 @@ echo $TOKEN
 Start the server:
 
 ```bash
-sudo inlets-pro server \
+inlets-pro server \
   --auto-tls \
-  --common-name $IP \
+  --auto-tls-san $IP \
   --token $TOKEN
 ```
 
@@ -87,7 +92,9 @@ If running the inlets client on the same host as SSH, you can simply set `PROXY_
 
 If using this manual approach to install inlets PRO, you should create a systemd unit file.
 
-### Configure the internal SSH server's listening port
+The easiest option is to run the server with the `--generate=systemd` flag, which will generate a systemd unit file to stdout. You can then copy the output to `/etc/systemd/system/inlets-pro.service` and enable it with `systemctl enable inlets-pro`.
+
+## Configure the private SSH server's listening port
 
 It's very likely (almost certain) that your exit server will already be listening for traffic on the standard ssh port `22`. Therefore you will need to configure your internal server to use an additional TCP port such as `2222`.
 
@@ -124,9 +131,9 @@ ssh -p 22 $IP "uptime"
 ssh -p 2222 $IP "uptime"
 ```
 
-### Start the inlets PRO client
+## Start the inlets PRO client
 
-First download the inlets-pro client onto the machine running ssh:
+First download the inlets-pro client onto the private SSH server:
 
 ```bash
 sudo inletsctl download
@@ -134,7 +141,7 @@ sudo inletsctl download
 
 Use the command from earlier to start the client on the server:
 
-```bash 
+```bash
 export IP="206.189.114.179"
 export TCP_PORTS="2222"
 export LICENSE_FILE="$HOME/LICENSE.txt"
@@ -147,7 +154,7 @@ inlets-pro client --url "wss://$IP:8123/connect" \
   --ports $TCP_PORTS
 ```
 
-You can alter UPSTREAM to point to another machine accessible from where you are running the inlets-pro client such as 192.168.0.10.
+The `localhost` value will be used for `--upstream` because the tunnel client is running on the same machine as the SSH service. However, you could run the client on another machine within the network, and then change the flag to point to the private SSH server's IP.
 
 ### Try it out
 
@@ -166,4 +173,4 @@ You can also use other compatible tools like `sftp`, `scp` and `rsync`, just mak
 The principles in this tutorial can be adapted for other protocols that run over TCP such as MongoDB or PostgreSQL, just adapt the port number as required.
 
 * [Quick-start: Tunnel a private database over inlets PRO](https://docs.inlets.dev/#/get-started/quickstart-tcp-database)
-* [Purchase inlets PRO for personal or commercial use](https://inlets.dev/)
+* [Purchase inlets for personal or commercial use](https://inlets.dev/pricing)

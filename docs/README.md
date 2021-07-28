@@ -10,17 +10,15 @@ You can run inlets as a stand-alone binary, in Docker, integrated into [Kuberne
 
 ## Use-cases
 
-You can use inlets as a stand-alone networking tool, or integrate it into a platform to extend functionality for your users.
-
 ### For companies - hybrid cloud, multi-cluster and partner access
 
-* Low-maintenance, secure, and quick alternative to a VPN
 * To connect hundreds or thousands of clients without making them part of your corporate network 
-* To build a hybrid cloud between existing servers and public cloud for: CI, e2e testing, or for accessing legacy databases and IT systems
 * To migrate on-premises databases and APIs to public cloud
+* Exposing private API endpoints to third-parties and partners
+* To build a hybrid cloud between existing servers and public cloud for: CI, e2e testing, or for accessing legacy databases and IT systems
+* Low-maintenance, secure, and quick alternative to a VPN
 * To connect to the private environments of your customers in a SaaS product
 * For command and control of: services within private VPCs, IoT devices, and Point of Sale (PoS)
-* Exposing private API endpoints to third-parties and partners
 * As a cheaper, easier alternative to a data-center uplink or managed product like AWS Direct Connect or Azure Express Route
 
 ### For teams and individuals - for public tunnels and Kubernetes connectivity
@@ -79,7 +77,7 @@ We created a page to help you get started once you have your free trial license:
 
 ### inlets PRO
 
-* [Quick-start: Tunnel a private SSH server over inlets PRO](/get-started/quickstart-tcp-ssh)
+* [Quick-start: Expose a private SSH endpoint using a TCP tunnel](/get-started/quickstart-tcp-ssh)
 * [Expose a local HTTP server with a Let's Encrypt certificate](/get-started/quickstart-http)
 * [Quick-start: Tunnel a private database over inlets PRO](/get-started/quickstart-tcp-database)
 
@@ -115,13 +113,19 @@ We created a page to help you get started once you have your free trial license:
 
 ### inletsctl reference documentation
 
+inletsctl creates pre-installed tunnel servers for you on a range of cloud providers:
+
 * [inletsctl documentation](/tools/inletsctl?id=inletsctl-reference-documentation)
 
 ### inlets-operator reference documentation
 
+inlets-operator is similar to inletsctl, but works as a Kubernetes operator to create tunnel servers for your LoadBalancer services:
+
 * [inlets-operator documentation](/tools/inlets-operator?id=inlets-operator-reference-documentation)
 
 ### inlets PRO reference documentation
+
+Learn CLI options for the inlets-pro command line tool:
 
 * [inlets PRO CLI reference guide](https://github.com/inlets/inlets-pro/blob/master/docs/cli-reference.md)
 
@@ -129,15 +133,22 @@ We created a page to help you get started once you have your free trial license:
 
 You can buy an inlets PRO license for personal or commercial use [on Gumroad](https://inlets.dev/pricing).
 
-> Note: inlets OSS has been discontinued and was replaced by inlets PRO. inlets PRO is a drop-in replacement. Feel free to reach out to the team at [contact@openfaas.com](contact@openfaas.com).
+> Note: inlets OSS has been discontinued and was replaced by inlets PRO. inlets PRO is a drop-in replacement.
+> 
+> Going forward inlets and inlets PRO will be used interchangeably to mean the same product and offering.
 
 ## Connect with the community
 
-Follow [@inletsdev](https://twitter.com/inletsdev) on Twitter.
+If you follow [@inletsdev](https://twitter.com/inletsdev) on Twitter, you'll be able to stay up to date with offers, news and blog posts.
 
-Join the `#inlets` channel on [OpenFaaS Slack](https://slack.openfaas.io/)
+To chat with the maintainers and for support, join the `#inlets` channel on [OpenFaaS Slack](https://slack.openfaas.io/)
 
-[Contribute to this documentation on GitHub](https://github.com/inlets/docs/)
+## Got a question? Found a problem?
+
+If you have questions or comments, feel free to reach out to the team at [contact@openfaas.com](contact@openfaas.com).
+
+* [Raise an issue on the docs website](https://github.com/inlets/docs)
+* [Raise an issue for the blog or main website](https://github.com/inlets/inlets.dev)
 
 ### Featured on
 
